@@ -1,0 +1,140 @@
+<!--
+  Movie Recommender HTML
+  Dark-themed front-end for collaborative movie recommendations
+-->
+<!DOCTYPE html> <!-- Defines the document as HTML5 -->
+<html>
+<head>
+    <title>Movie Recommender</title> <!-- Sets the tab title -->
+    <style>
+        /* Global dark theme for the body */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font stack */
+            background-color: #2b2b2b; /* Dark grey background */
+            color: #eee; /* Light text color */
+            padding: 20px; /* Space around content */
+        }
+
+        /* Container styling for each section block */
+        .section {
+            margin-top: 30px; /* Vertical spacing between sections */
+            padding: 30px; /* Inner spacing */
+            background-color: #1f1f1f; /* Slightly darker background */
+            border-radius: 8px; /* Rounded corners */
+            font-size: 1.4em; /* Increase text size in controls */
+        }
+
+        /* Flex grid to wrap movie cards */
+        .movie-grid {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping to next line */
+            gap: 10px; /* Space between cards */
+        }
+        /* Individual movie card container */
+        .movie {
+            position: relative; /* For overlay positioning */
+            width: 250px; /* Fixed card width */
+            cursor: pointer; /* Pointer on hover */
+            overflow: hidden; /* Crop overflow */
+            border-radius: 8px; /* Card rounded corners */
+        }
+        /* Movie poster image */
+        img {
+            width: 100%; /* Full width of container */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Remove inline spacing */
+            border-radius: 8px; /* Match container rounding */
+            transition: filter 0.3s ease; /* Smooth hover blur */
+        }
+        /* Blur & darken on hover */
+        .movie:hover img {
+            filter: blur(4px) brightness(30%);
+        }
+        /* Text overlay for title and rating */
+        .movie p {
+            position: absolute; /* Layered on top */
+            top: 50%; left: 50%; /* Center alignment */
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            color: #fff; /* White text */
+            padding: 8px; /* Inner padding */
+            border-radius: 4px; /* Rounded bubble */
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s ease; /* Smooth fade-in */
+            text-align: center; /* Center text */
+            width: 90%; /* Nearly full width */
+        }
+        /* Show overlay on hover */
+        .movie:hover p {
+            opacity: 1;
+        }
+        /* Adjust section margins (duplicate rule) */
+        .section { margin-top: 30px; }
+        /* Controls: label, input, button sizes */
+        label, input, button {
+            font-size: 1.4em; /* Increase font size */
+        }
+        /* Numeric input styling */
+        input[type="number"] {
+            width: 100px; /* Fixed width */
+            padding: 8px; /* Inner spacing */
+            margin-left: 8px; /* Space from label */
+            background: #444; /* Dark input background */
+            color: #eee; /* Light text */
+            border: 1px solid #555; /* Border color */
+            border-radius: 4px; /* Rounded corners */
+        }
+        /* Button styling */
+        button {
+            padding: 8px 16px; /* 8px vertical, 16px horizontal */
+            margin-left: 8px; /* Space from input */
+            font-size: 1.1em; /* Slightly larger text */
+            cursor: pointer; /* Pointer cursor */
+            background: #007bff; /* Blue background */
+            color: white; /* White text */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+            transition: background 0.2s ease; /* Smooth hover */
+        }
+        /* Button hover state */
+        button:hover { background: #0056b3; }
+
+        /* Section headings */
+        h2 {
+            font-size: 1.8em; /* Larger subheading */
+            margin-bottom: 30px; /* Space below heading */
+            margin-top: 0; /* Remove top margin */
+        }
+    </style>
+</head>
+<body>
+    <!-- Main title -->
+    <h1 style="font-size: 2.8em;">🎬 Movie Recommender</h1>
+
+    <!-- User ID input section -->
+    <div class="section">
+        <label for="uidBox">Enter User ID (1–270000):</label>
+        <input id="uidBox" type="number" min="1" max="270000" value="1"> <!-- Numeric user ID field -->
+        <button id="loadBtn">Load User</button> <!-- Trigger data load -->
+    </div>
+
+    <!-- User historic ratings section -->
+    <div id="userRatings" class="section">
+        <h2>User's Historic Ratings</h2>
+        <div id="ratingsContainer" class="movie-grid">
+            <p>No user loaded.</p> <!-- Placeholder message -->
+        </div>
+    </div>
+
+    <!-- Recommended movies section -->
+    <div id="userRecs" class="section">
+        <h2>Recommended Movies</h2>
+        <div id="recsContainer" class="movie-grid">
+            <p>No recommendations yet.</p> <!-- Placeholder message -->
+        </div>
+    </div>
+
+    <!-- Include the dynamic behavior script -->
+    <script src="/static/script.js"></script>
+</body>
+</html>
