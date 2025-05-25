@@ -13,7 +13,7 @@ collab_model = load_model("models/NeuMF_Model.keras", compile=False)
 collab_model.compile(optimizer='adam', loss='mean_squared_error')
 
 # Load movie metadata (posters, titles, overviews, etc.)
-movies = pd.read_csv("data/movies_with_tmdb_data.csv")
+movies = pd.read_csv("data/movies1M_with_tmdb_data.csv")
 # Replace missing posters with a default placeholder image path
 movies['poster_url'] = movies['poster_url'].fillna("/static/images/placeholder.jpg")
 
