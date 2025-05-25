@@ -8,7 +8,7 @@ app = Flask(__name__)  # Initialize Flask application
 # === Load models and data ===
 print("Loading models and data...")
 # Load the pre-trained collaborative filtering model (HDF5 format)
-collab_model = load_model("models/collaborative_model.h5", compile=False)
+collab_model = load_model("models/collaborative_model.keras", compile=False)
 # Compile the model for inference using Adam optimizer and MSE loss (metrics not used here)
 collab_model.compile(optimizer='adam', loss='mean_squared_error')
 
